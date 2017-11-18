@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.io7m.bugs</groupId>
+  <artifactId>maven-javadoc-bug</artifactId>
+  <version>0.1.0</version>
+
+  <modules>
+    <module>a</module>
+    <module>b</module>
+    <module>c</module>
+  </modules>
+
+  <packaging>pom</packaging>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.7.0</version>
+        <configuration>
+          <source>9</source>
+          <target>9</target>
+          <release>9</release>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+  </build>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>javadoc-staging</id>
+      <url>https://repository.apache.org/content/repositories/maven-1377/</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+</project>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <parent>
+    <artifactId>maven-javadoc-bug</artifactId>
+    <groupId>com.io7m.bugs</groupId>
+    <version>0.1.0</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>c</artifactId>
+
+  <dependencies>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>b</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!-- Javadoc handling -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+
+        <executions>
+
+          <!-- Produce aggregate dependency javadocs -->
+          <execution>
+            <id>javadoc-aggregate</id>
+            <phase>package</phase>
+            <goals>
+              <goal>javadoc-no-fork</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/apidocs</outputDirectory>
+              <includeDependencySources>true</includeDependencySources>
+              <includeTransitiveDependencySources>true</includeTransitiveDependencySources>
+              <dependencySourceIncludes>
+                <dependencySourceSet>com.io7m.bugs*</dependencySourceSet>
+              </dependencySourceIncludes>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
